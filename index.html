@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGER | Sistema Integral de Gestión de Regalos</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Fuentes Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Iconos FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Estilos para los botones flotantes -->
+  <style>
+    .floating-social-bar {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 9999;
+    }
+
+    .social-float-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 24px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .social-float-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .btn-float-wa { background-color: #25D366; }
+    .btn-float-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+    .btn-float-fb { background-color: #1877F2; }
+    .btn-float-mail { background-color: #EA4335; }
+
+    /* Tooltips opcionales */
+    .social-float-btn .tooltip-float {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      right: 60px;
+      background-color: #0A2540;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      white-space: nowrap;
+      transition: opacity 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
+      pointer-events: none;
+    }
+
+    .social-float-btn:hover .tooltip-float {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado / Navegación -->
+  <header class="navbar">
+    <a href="index.html" class="logo-link">
+      <div class="logo">
+        <div class="logo-img-wrapper">
+          <svg class="brand-logo-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="250" cy="250" r="230" fill="#ffffff" stroke="#0A2540" stroke-width="8"/>
+            
+            <!-- Ruedas del carruaje -->
+            <g transform="translate(0, 30)">
+              <!-- Rueda Izquierda -->
+              <circle cx="170" cy="260" r="50" fill="#ffffff" stroke="#0A2540" stroke-width="6"/>
+              <line x1="170" y1="210" x2="170" y2="310" stroke="#0A2540" stroke-width="3"/>
+              <line x1="120" y1="260" x2="220" y2="260" stroke="#0A2540" stroke-width="3"/>
+              <line x1="135" y1="225" x2="205" y2="295" stroke="#0A2540" stroke-width="3"/>
+              <line x1="135" y1="295" x2="205" y2="225" stroke="#0A2540" stroke-width="3"/>
+              <circle cx="170" cy="260" r="10" fill="#0A2540"/>
+
+              <!-- Rueda Derecha -->
+              <circle cx="330" cy="260" r="50" fill="#ffffff" stroke="#0A2540" stroke-width="6"/>
+              <line x1="330" y1="210" x2="330" y2="310" stroke="#0A2540" stroke-width="3"/>
+              <line x1="280" y1="260" x2="380" y2="260" stroke="#0A2540" stroke-width="3"/>
+              <line x1="295" y1="225" x2="365" y2="295" stroke="#0A2540" stroke-width="3"/>
+              <line x1="295" y1="295" x2="365" y2="225" stroke="#0A2540" stroke-width="3"/>
+              <circle cx="330" cy="260" r="10" fill="#0A2540"/>
+            </g>
+
+            <!-- Cesta / Caja del carruaje (Púrpura/Vino) -->
+            <path d="M 180 140 L 320 140 L 290 310 L 210 310 Z" fill="#6B1D4F"/>
+            <!-- Lazos Dorados -->
+            <path d="M 235 140 L 235 310 L 265 310 L 265 140 Z" fill="#D4AF37"/>
+            <path d="M 180 205 L 320 205 L 315 225 L 185 225 Z" fill="#D4AF37"/>
+            
+            <!-- Detalles Curvos Carruaje -->
+            <path d="M 130 230 C 160 210, 200 230, 210 270" fill="none" stroke="#D4AF37" stroke-width="8" stroke-linecap="round"/>
+            <path d="M 370 230 C 340 210, 300 230, 290 270" fill="none" stroke="#D4AF37" stroke-width="8" stroke-linecap="round"/>
+
+            <!-- Moño Superior -->
+            <path d="M 250 140 C 210 90, 140 110, 180 140 C 220 170, 250 140, 250 140 Z" fill="#D4AF37"/>
+            <path d="M 250 140 C 290 90, 360 110, 320 140 C 280 170, 250 140, 250 140 Z" fill="#D4AF37"/>
+            <circle cx="250" cy="140" r="12" fill="#B38F27"/>
+
+            <!-- Texto SIGER -->
+            <text x="250" y="395" font-family="'Montserrat', sans-serif" font-weight="900" font-size="78" fill="#D4AF37" text-anchor="middle" letter-spacing="3">SIGER</text>
+            <text x="250" y="430" font-family="'Montserrat', sans-serif" font-weight="700" font-size="20" fill="#0A2540" text-anchor="middle">Sistema Integral de Gestión de Regalos</text>
+          </svg>
+        </div>
+        <span class="brand-title">SIGER</span>
+      </div>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#inicio" class="active">Inicio</a></li>
+        <li><a href="#modalidades">Modalidades</a></li>
+        <li><a href="catalogo.html" class="nav-catalog-btn"><i class="fa-solid fa-gift"></i> Catálogo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Sección Hero -->
+  <section id="inicio" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="badge"><i class="fa-solid fa-crown"></i> Calidad & Elegancia Garantizada</span>
+      <h1>Convertimos tus sentimientos en <span class="gold-gradient-text">detalles inolvidables</span></h1>
+      <p>En SIGER nos encargamos de que tu regalo sea perfecto. Explora nuestras modalidades personalizadas o visita nuestro catálogo exclusivo para cada ocasión.</p>
+      
+      <div class="hero-buttons">
+        <a href="catalogo.html" class="btn-catalog">
+          <i class="fa-solid fa-book-open"></i> Ver Catálogo de Regalos
+        </a>
+        <a href="https://wa.me/50582418026?text=Hola,%20me%20gustaría%20información%20sobre%20sus%20modalidades%20de%20regalos" class="btn-whatsapp" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i> Contactar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Modalidades de Servicio -->
+  <section id="modalidades" class="section container">
+    <div class="section-title">
+      <h2>Nuestras Modalidades de Servicio</h2>
+      <div class="title-gold-line"></div>
+      <p>Haz clic o pasa el cursor sobre cada tarjeta para descubrir los detalles del servicio</p>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- TARJETA MODALIDAD 1 -->
+      <div class="flip-card" tabindex="0">
+        <div class="flip-card-inner">
+          <!-- Frente -->
+          <div class="flip-card-front">
+            <div class="product-badge">Modalidad 01</div>
+            <div class="icon-wrapper">
+              <i class="fa-solid fa-box-open"></i>
+            </div>
+            <h3>Empaque Personalizado</h3>
+            <p class="short-desc">Tú nos entregas tus productos y nosotros los transformamos en una presentación de lujo lista para retirar.</p>
+            <div class="btn-flip-trigger">
+              Ver detalles <i class="fa-solid fa-circle-arrow-right"></i>
+            </div>
+          </div>
+          <!-- Reverso -->
+          <div class="flip-card-back bg-modalidad-1">
+            <div class="back-overlay"></div>
+            <div class="back-content">
+              <h3>Empaque Personalizado</h3>
+              <p class="full-desc">
+                En esta modalidad, el cliente proporciona los productos que desea regalar y selecciona el tipo de caja y la temática de su preferencia. Nos encargamos de diseñar, preparar y decorar el empaque con el sello de elegancia SIGER. Una vez listo, el cliente retira su regalo listo para entregar.
+              </p>
+              <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20la%20Modalidad%201:%20Empaque%20personalizado" target="_blank" class="btn-primary-small">
+                <i class="fa-brands fa-whatsapp"></i> Pedir por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TARJETA MODALIDAD 2 -->
+      <div class="flip-card" tabindex="0">
+        <div class="flip-card-inner">
+          <!-- Frente -->
+          <div class="flip-card-front highlight">
+            <div class="product-badge popular"><i class="fa-solid fa-star"></i> Más Solicitado</div>
+            <div class="icon-wrapper">
+              <i class="fa-solid fa-truck-fast"></i>
+            </div>
+            <h3>Empaque & Delivery Express</h3>
+            <p class="short-desc">Diseño de empaque exclusivo a tu medida con entrega directa a la puerta de esa persona especial.</p>
+            <div class="btn-flip-trigger">
+              Ver detalles <i class="fa-solid fa-circle-arrow-right"></i>
+            </div>
+          </div>
+          <!-- Reverso -->
+          <div class="flip-card-back bg-modalidad-2">
+            <div class="back-overlay"></div>
+            <div class="back-content">
+              <h3>Empaque & Delivery</h3>
+              <p class="full-desc">
+                Incluye el servicio de empaque personalizado y la entrega especial. El cliente proporciona los productos, escoge temática y estilo, y nos brinda los datos del destinatario. Preparamos la sorpresa y la llevamos directamente con la mejor presentación.
+              </p>
+              <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20la%20Modalidad%202:%20Empaque%20personalizado%20y%20delivery" target="_blank" class="btn-primary-small">
+                <i class="fa-brands fa-whatsapp"></i> Pedir por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TARJETA MODALIDAD 3 -->
+      <div class="flip-card" tabindex="0">
+        <div class="flip-card-inner">
+          <!-- Frente -->
+          <div class="flip-card-front">
+            <div class="product-badge">Modalidad 03</div>
+            <div class="icon-wrapper">
+              <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+            <h3>Gestión VIP & Compra Integral</h3>
+            <p class="short-desc">Servicio 100% integral: nos encargamos de comprar el regalo, empacarlo con lujo y entregarlo.</p>
+            <div class="btn-flip-trigger">
+              Ver detalles <i class="fa-solid fa-circle-arrow-right"></i>
+            </div>
+          </div>
+          <!-- Reverso -->
+          <div class="flip-card-back bg-modalidad-3">
+            <div class="back-overlay"></div>
+            <div class="back-content">
+              <h3>Servicio Integral SIGER</h3>
+              <p class="full-desc">
+                Solución completa 'llave en mano'. Eliges la idea o presupuesto, temática y gustos de quien recibe. Nos encargamos de comprar los obsequios, diseñar el empaque de lujo y realizar la entrega puntual. ¡Tú solo disfrutas del agradecimiento!
+              </p>
+              <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20la%20Modalidad%203:%20Gestión%20de%20compra,%20empaque%20y%20delivery" target="_blank" class="btn-primary-small">
+                <i class="fa-brands fa-whatsapp"></i> Pedir por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Barra de Botones Flotantes (WhatsApp, Instagram, Facebook y Email) -->
+  <div class="floating-social-bar">
+    <a href="https://wa.me/50582418026?text=Hola,%20quisiera%20consultar%20sobre%20sus%20servicios%20de%20regalos%20personalizados" class="social-float-btn btn-float-wa" target="_blank" aria-label="WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span class="tooltip-float">WhatsApp</span>
+    </a>
+    <a href="https://www.instagram.com/siger_06?cplk=bWliNGoycGdodHNj" class="social-float-btn btn-float-ig" target="_blank" aria-label="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+      <span class="tooltip-float">Instagram</span>
+    </a>
+    <a href="https://www.facebook.com/share/19n6tDWcPV/" class="social-float-btn btn-float-fb" target="_blank" aria-label="Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+      <span class="tooltip-float">Facebook</span>
+    </a>
+    <a href="mailto:singer4975@gmail.com" class="social-float-btn btn-float-mail" aria-label="Correo">
+      <i class="fa-solid fa-envelope"></i>
+      <span class="tooltip-float">Correo</span>
+    </a>
+  </div>
+
+  <!-- Pie de página -->
+  <footer class="footer" id="contacto">
+    <div class="container footer-content">
+      <div class="footer-logo">
+        <span class="gold-gradient-text font-serif">SIGER</span>
+        <p class="sub-logo-text">Sistema Integral de Gestión de Regalos</p>
+      </div>
+      <blockquote class="client-quote">
+        <i class="fa-solid fa-quote-left"></i>
+        "No regalamos un objeto, entregamos una emoción y creamos recuerdos que durarán para siempre."
+        <i class="fa-solid fa-quote-right"></i>
+      </blockquote>
+      <div class="contact-info-footer" style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+        <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/50582418026" target="_blank" style="color: inherit; text-decoration: none;"><strong>+505 8241-8026</strong></a></p>
+        <p><i class="fa-brands fa-instagram"></i> Instagram: <a href="https://www.instagram.com/siger_06?cplk=bWliNGoycGdodHNj" target="_blank" style="color: inherit; text-decoration: none;"><strong>@siger_06</strong></a></p>
+        <p><i class="fa-brands fa-facebook"></i> Facebook: <a href="https://www.facebook.com/share/19n6tDWcPV/" target="_blank" style="color: inherit; text-decoration: none;"><strong>SIGER</strong></a></p>
+        <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:singer4975@gmail.com" style="color: inherit; text-decoration: none;"><strong>singer4975@gmail.com</strong></a></p>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 SIGER. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html

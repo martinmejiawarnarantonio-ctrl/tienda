@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Exclusivo | SIGER</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Fuentes Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Iconos FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Estilos para los botones flotantes múltiples */
+    .floating-buttons-container {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .floating-btn {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 24px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      text-decoration: none;
+      position: relative;
+    }
+    .floating-btn:hover {
+      transform: scale(1.1);
+    }
+    .floating-btn.whatsapp { background-color: #25d366; }
+    .floating-btn.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .floating-btn.facebook { background-color: #1877f2; }
+    .floating-btn.email { background-color: #ea4335; }
+
+    /* Tooltips para los botones flotantes */
+    .floating-btn .tooltip-float {
+      visibility: hidden;
+      background-color: #0A2540;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 10px;
+      position: absolute;
+      right: 70px;
+      top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .floating-btn:hover .tooltip-float {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado / Navegación -->
+  <header class="navbar">
+    <a href="index.html" class="logo-link">
+      <div class="logo">
+        <div class="logo-img-wrapper">
+          <svg class="brand-logo-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="250" cy="250" r="230" fill="#ffffff" stroke="#0A2540" stroke-width="8"/>
+            
+            <!-- Ruedas del carruaje -->
+            <g transform="translate(0, 30)">
+              <!-- Rueda Izquierda -->
+              <circle cx="170" cy="260" r="50" fill="#ffffff" stroke="#0A2540" stroke-width="6"/>
+              <line x1="170" y1="210" x2="170" y2="310" stroke="#0A2540" stroke-width="3"/>
+              <line x1="120" y1="260" x2="220" y2="260" stroke="#0A2540" stroke-width="3"/>
+              <line x1="135" y1="225" x2="205" y2="295" stroke="#0A2540" stroke-width="3"/>
+              <line x1="135" y1="295" x2="205" y2="225" stroke="#0A2540" stroke-width="3"/>
+              <circle cx="170" cy="260" r="10" fill="#0A2540"/>
+
+              <!-- Rueda Derecha -->
+              <circle cx="330" cy="260" r="50" fill="#ffffff" stroke="#0A2540" stroke-width="6"/>
+              <line x1="330" y1="210" x2="330" y2="310" stroke="#0A2540" stroke-width="3"/>
+              <line x1="280" y1="260" x2="380" y2="260" stroke="#0A2540" stroke-width="3"/>
+              <line x1="295" y1="225" x2="365" y2="295" stroke="#0A2540" stroke-width="3"/>
+              <line x1="295" y1="295" x2="365" y2="225" stroke="#0A2540" stroke-width="3"/>
+              <circle cx="330" cy="260" r="10" fill="#0A2540"/>
+            </g>
+
+            <!-- Cesta / Caja del carruaje (Púrpura/Vino) -->
+            <path d="M 180 140 L 320 140 L 290 310 L 210 310 Z" fill="#6B1D4F"/>
+            <!-- Lazos Dorados -->
+            <path d="M 235 140 L 235 310 L 265 310 L 265 140 Z" fill="#D4AF37"/>
+            <path d="M 180 205 L 320 205 L 315 225 L 185 225 Z" fill="#D4AF37"/>
+            
+            <!-- Detalles Curvos Carruaje -->
+            <path d="M 130 230 C 160 210, 200 230, 210 270" fill="none" stroke="#D4AF37" stroke-width="8" stroke-linecap="round"/>
+            <path d="M 370 230 C 340 210, 300 230, 290 270" fill="none" stroke="#D4AF37" stroke-width="8" stroke-linecap="round"/>
+
+            <!-- Moño Superior -->
+            <path d="M 250 140 C 210 90, 140 110, 180 140 C 220 170, 250 140, 250 140 Z" fill="#D4AF37"/>
+            <path d="M 250 140 C 290 90, 360 110, 320 140 C 280 170, 250 140, 250 140 Z" fill="#D4AF37"/>
+            <circle cx="250" cy="140" r="12" fill="#B38F27"/>
+
+            <!-- Texto SIGER -->
+            <text x="250" y="395" font-family="'Montserrat', sans-serif" font-weight="900" font-size="78" fill="#D4AF37" text-anchor="middle" letter-spacing="3">SIGER</text>
+            <text x="250" y="430" font-family="'Montserrat', sans-serif" font-weight="700" font-size="20" fill="#0A2540" text-anchor="middle">Sistema Integral de Gestión de Regalos</text>
+          </svg>
+        </div>
+        <span class="brand-title">SIGER</span>
+      </div>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="index.html#modalidades">Modalidades</a></li>
+        <li><a href="catalogo.html" class="active nav-catalog-btn"><i class="fa-solid fa-gift"></i> Catálogo</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Banner del Catálogo -->
+  <section class="catalog-hero">
+    <div class="catalog-hero-content">
+      <h1>Catálogo de <span class="gold-gradient-text">Ocasiones Especiales</span></h1>
+      <p>Explora nuestras exclusivas propuestas de empaque y regalos clasificados para cada celebración inolvidable</p>
+    </div>
+  </section>
+
+  <!-- Contenido del Catálogo -->
+  <main class="container catalog-container">
+
+    <!-- SECCIÓN SAN VALENTÍN -->
+    <section class="catalog-section" id="san-valentin">
+      <div class="category-header">
+        <i class="fa-solid fa-heart"></i>
+        <h2>San Valentín & Amor</h2>
+      </div>
+      <div class="catalog-grid">
+        <div class="catalog-card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=800&auto=format&fit=crop" alt="Caja Romántica de Rosas">
+            <span class="category-badge">San Valentín</span>
+          </div>
+          <div class="card-body">
+            <h3>Caja Romántica de Rosas & Chocolates</h3>
+            <p>Empaque temático en forma de corazón con rosas seleccionadas, bombones artesanales e iluminación LED.</p>
+            <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20la%20Caja%20Romántica%20de%20Rosas%20del%20catálogo" target="_blank" class="btn-card-order">
+              <i class="fa-brands fa-whatsapp"></i> Pedir este diseño
+            </a>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=800&auto=format&fit=crop" alt="Caja de Recuerdos de Pareja">
+            <span class="category-badge">San Valentín</span>
+          </div>
+          <div class="card-body">
+            <h3>Box Sorpresa "Nuestra Historia"</h3>
+            <p>Caja desplegable personalizada con fotografías impresas de tus mejores momentos y dedicatoria.</p>
+            <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20el%20Box%20Nuestra%20Historia%20del%20catálogo" target="_blank" class="btn-card-order">
+              <i class="fa-brands fa-whatsapp"></i> Pedir este diseño
+            </a>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=800&auto=format&fit=crop" alt="Cúpula de Rosa Eterna">
+            <span class="category-badge">San Valentín</span>
+          </div>
+          <div class="card-body">
+            <h3>Cúpula Premium "Rosa Eterna"</h3>
+            <p>Elegante rosa preservada bajo cúpula de cristal, base de madera fina y luces micro LED cálidas.</p>
+            <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20la%20Cúpula%20de%20Rosa%20Eterna%20del%20catálogo" target="_blank" class="btn-card-order">
+              <i class="fa-brands fa-whatsapp"></i> Pedir este diseño
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN CUMPLEAÑOS -->
+    <section class="catalog-section" id="cumpleanos">
+      <div class="category-header">
+        <i class="fa-solid fa-cake-candles"></i>
+        <h2>Cumpleaños Especiales</h2>
+      </div>
+      <div class="catalog-grid">
+        <div class="catalog-card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=800&auto=format&fit=crop" alt="Caja de Cumpleaños Fiesta">
+            <span class="category-badge">Cumpleaños</span>
+          </div>
+          <div class="card-body">
+            <h3>Box Cumpleaños Celebration</h3>
+            <p>Incluye globo metalizado personalizados, mini pastel gourmet, dulces variados y tarjeta de felicitación.</p>
+            <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20el%20Box%20Cumpleaños%20Festivo%20del%20catálogo" target="_blank" class="btn-card-order">
+              <i class="fa-brands fa-whatsapp"></i> Pedir este diseño
+            </a>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop" alt="Arreglo de Regalo Premium">
+            <span class="category-badge">Cumpleaños</span>
+          </div>
+          <div class="card-body">
+            <h3>Caja VIP Luxury Birthday</h3>
+            <p>Empaque en acabado azul y dorado con licor preferido, copa o vaso grabado y botanas gourmet.</p>
+            <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20la%20Caja%20Luxury%20Birthday%20del%20catálogo" target="_blank" class="btn-card-order">
+              <i class="fa-brands fa-whatsapp"></i> Pedir este diseño
+            </a>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=800&auto=format&fit=crop" alt="Desayuno Sorpresa de Cumpleaños">
+            <span class="category-badge">Cumpleaños</span>
+          </div>
+          <div class="card-body">
+            <h3>Bandeja Desayuno Morning Magic</h3>
+            <p>Bandeja de madera decorada, taza personalizable, jugo natural, waffles o pancakes y arreglo floral.</p>
+            <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20la%20Bandeja%20Desayuno%20Sorpresa%20del%20catálogo" target="_blank" class="btn-card-order">
+              <i class="fa-brands fa-whatsapp"></i> Pedir este diseño
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN ANIVERSARIOS -->
+    <section class="catalog-section" id="aniversarios">
+      <div class="category-header">
+        <i class="fa-solid fa-champagne-glasses"></i>
+        <h2>Aniversarios & Distinción</h2>
+      </div>
+      <div class="catalog-grid">
+        <div class="catalog-card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop" alt="Caja de Aniversario Elegante">
+            <span class="category-badge">Aniversario</span>
+          </div>
+          <div class="card-body">
+            <h3>Caja Rígida Aniversario Deluxe</h3>
+            <p>Caja rígida con acabados de lujo, botella de espumante o vino, chocolates finos y carta en pergamino.</p>
+            <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20la%20Caja%20Elegante%20Aniversario%20del%20catálogo" target="_blank" class="btn-card-order">
+              <i class="fa-brands fa-whatsapp"></i> Pedir este diseño
+            </a>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800&auto=format&fit=crop" alt="Cesta Gourmet de Vino y Quesos">
+            <span class="category-badge">Aniversario</span>
+          </div>
+          <div class="card-body">
+            <h3>Cesta Gourmet Sommelier & Quesos</h3>
+            <p>Cesta de regalo con vino tinto de reserva, tabla de quesos madurados, frutos secos y copas de cristal.</p>
+            <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20la%20Cesta%20Gourmet%20Vino%20y%20Quesos%20del%20catálogo" target="_blank" class="btn-card-order">
+              <i class="fa-brands fa-whatsapp"></i> Pedir este diseño
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN TEMPORADAS -->
+    <section class="catalog-section" id="temporadas">
+      <div class="category-header">
+        <i class="fa-solid fa-star"></i>
+        <h2>Temporadas Especiales</h2>
+      </div>
+      <div class="catalog-grid">
+        <div class="catalog-card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=800&auto=format&fit=crop" alt="Baúl Navideño">
+            <span class="category-badge">Navidad</span>
+          </div>
+          <div class="card-body">
+            <h3>Baúl Mágico Navideño</h3>
+            <p>Empaque rústico de gala con lazos dorados, galletería fina, adornos navideños y panettone.</p>
+            <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20el%20Baúl%20Mágico%20Navideño%20del%20catálogo" target="_blank" class="btn-card-order">
+              <i class="fa-brands fa-whatsapp"></i> Pedir este diseño
+            </a>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1509557965875-b88c97052f0e?q=80&w=800&auto=format&fit=crop" alt="Spooky Box Halloween">
+            <span class="category-badge">Halloween</span>
+          </div>
+          <div class="card-body">
+            <h3>Spooky Box Halloween</h3>
+            <p>Empaque misterioso con golosinas temáticas, detalles sorpresa y presentación única.</p>
+            <a href="https://wa.me/50582418026?text=Hola,%20me%20interesa%20la%20Spooky%20Box%20Halloween%20del%20catálogo" target="_blank" class="btn-card-order">
+              <i class="fa-brands fa-whatsapp"></i> Pedir este diseño
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Botones Flotantes Múltiples (WhatsApp, Instagram, Facebook, Correo) -->
+  <div class="floating-buttons-container">
+    <a href="https://wa.me/50582418026?text=Hola,%20tengo%20una%20duda%20sobre%20un%20producto%20del%20catálogo" class="floating-btn whatsapp" target="_blank" aria-label="WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span class="tooltip-float">¡Escríbenos a WhatsApp!</span>
+    </a>
+    <a href="https://www.instagram.com/siger_06?cplk=bWliNGoycGdodHNj" class="floating-btn instagram" target="_blank" aria-label="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+      <span class="tooltip-float">Síguenos en Instagram</span>
+    </a>
+    <a href="https://www.facebook.com/share/19n6tDWcPV/" class="floating-btn facebook" target="_blank" aria-label="Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+      <span class="tooltip-float">Síguenos en Facebook</span>
+    </a>
+    <a href="mailto:singer4975@gmail.com" class="floating-btn email" target="_blank" aria-label="Correo Electrónico">
+      <i class="fa-solid fa-envelope"></i>
+      <span class="tooltip-float">Envíanos un Correo</span>
+    </a>
+  </div>
+
+  <!-- Pie de página -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-logo">
+        <span class="gold-gradient-text font-serif">SIGER</span>
+        <p class="sub-logo-text">Sistema Integral de Gestión de Regalos</p>
+      </div>
+      <blockquote class="client-quote">
+        <i class="fa-solid fa-quote-left"></i>
+        "No regalamos un objeto, entregamos una emoción y creamos recuerdos que durarán para siempre."
+        <i class="fa-solid fa-quote-right"></i>
+      </blockquote>
+      <div class="contact-info-footer">
+        <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: <strong>+505 8241-8026</strong></p>
+        <p><i class="fa-brands fa-instagram"></i> Instagram: <a href="https://www.instagram.com/siger_06?cplk=bWliNGoycGdodHNj" target="_blank">@siger_06</a></p>
+        <p><i class="fa-brands fa-facebook-f"></i> Facebook: <a href="https://www.facebook.com/share/19n6tDWcPV/" target="_blank">SIGER Facebook</a></p>
+        <p><i class="fa-solid fa-envelope"></i> Correo: <a href="mailto:singer4975@gmail.com">singer4975@gmail.com</a></p>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 SIGER. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
